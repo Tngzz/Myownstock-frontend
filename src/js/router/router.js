@@ -1,5 +1,6 @@
 import { HomeComponent } from "../../components/home/home.component.js"
 import { StockComponent } from "../../components/stock/stock.component.js"
+import { addProductsComponent } from "../../components/addProducts/addProducts.component.js"
 import { RouteBuilder } from "./route-builder.js"
 export class Router {
     /**
@@ -62,7 +63,14 @@ export class Router {
                 .component(new StockComponent())
                 .title('My Stock')
                 .build() 
-            )        
+            )
+            this.#routes.push(
+                routeBuilder
+                .path('/addProducts')
+                .component(new addProductsComponent())
+                .title('Add Products')
+                .build() 
+            )             
         } catch(error) {
             console.log(error)
         }
