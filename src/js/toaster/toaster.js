@@ -1,4 +1,5 @@
 import icons from "../../../assets/images/product/icons/icons.js"
+import "./toaster.css"
 
 export class Toaster{
     #document = document.querySelector('body')
