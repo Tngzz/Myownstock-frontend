@@ -3,7 +3,6 @@
 * @version 1.0.0
 *   - Flex basis tile
 */
-
 /* Ajoutez une classe pour styliser chaque produit individuellement */
 .product-list {
     display: flex;
@@ -19,6 +18,11 @@
 
 .product-thumbnail {
     flex: 0 0 2em;
+}
+
+.product-thumbnail figure {
+    height: 8em;
+    width: 8em;
 }
 
 .product-thumbnail figure img {
