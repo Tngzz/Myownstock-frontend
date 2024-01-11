@@ -1,9 +1,10 @@
+import './form.css'
 
 export class Form {
 
     #template = `
     <div class="container">
-        <form class = Form">
+        <form id="myForm">
             <label for="fname">id (*)</label>
             <input type="text" id="fname" name="id" placeholder="id">
 
@@ -26,9 +27,34 @@ export class Form {
         formElement.innerHTML = this.render();
 
         document.body.appendChild(formElement);
+
+        const myForm = document.getElementById('myForm');
+        myForm.addEventListener('submit', this.handleFormSubmission.bind(this));
+    }
+
+    handleFormSubmission(event) {
+        event.preventDefault();
+
+        const formData = {
+            id: document.getElementById('fname').value,
+            label: document.getElementById('lname').value,
+            stock: document.getElementById('Stock').value
+        };
+
+        fetch('http://localhost:8080/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Réponse du serveur:', data);
+        })
+        .catch(error => {
+            console.error('Erreur lors de la requête Fetch:', error);
+        });
     }
 }
-
-const myForm = new Form()
-myForm.displayForm()
 
